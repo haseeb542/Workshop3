@@ -11,10 +11,38 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library (tidyverse)
+library(skimr)
 
 survey <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-18/survey.csv')
 
 write_csv(survey,"survey_data.csv")
 
+survey%>%glimpse()
+survey%>%skim()
+
+```
+
+### Data Wrangling
+
+### Filter
+
+```{r}
+survey_IT_au<-survey%>%
+  filter(country=="Australia")
+
+survey%>%
+  filter(country=="Australia" | country=="australia")%>%
+  filter(industry=="Computing or Tech" & annual_salary>80000)
+
+
+```
+
+#### Select
+
+```{r}
+survey_IT_au %>%
+  select(how_old_are_you, job_title, annual_salary)
+
+survey_IT_au%>%select(industry)
 ```
 
