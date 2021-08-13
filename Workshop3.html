@@ -542,6 +542,51 @@ survey%&gt;%
 ##  9 Computing or Tech                   
 ## 10 Law                                 
 ## # ... with 358 more rows</code></pre>
+<pre class="r"><code>library(tidyverse)
+library(skimr)</code></pre>
+<pre class="r"><code>survey &lt;- read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-18/survey.csv&#39;)</code></pre>
+<pre><code>## Rows: 26232 Columns: 18</code></pre>
+<pre><code>## -- Column specification --------------------------------------------------------
+## Delimiter: &quot;,&quot;
+## chr (16): timestamp, how_old_are_you, industry, job_title, additional_contex...
+## dbl  (2): annual_salary, other_monetary_comp</code></pre>
+<pre><code>## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>survey &lt;- read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-18/survey.csv&#39;)</code></pre>
+<pre><code>## Rows: 26232 Columns: 18</code></pre>
+<pre><code>## -- Column specification --------------------------------------------------------
+## Delimiter: &quot;,&quot;
+## chr (16): timestamp, how_old_are_you, industry, job_title, additional_contex...
+## dbl  (2): annual_salary, other_monetary_comp</code></pre>
+<pre><code>## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>survey_IT_au&lt;-survey%&gt;%
+  filter(country==&quot;Australia&quot; | country==&quot;australia&quot;|country==&quot;Australi&quot;)%&gt;%
+  filter(industry==&quot;Computing or Tech&quot; &amp; annual_salary&gt;80000)</code></pre>
+<pre class="r"><code>survey_IT_au%&gt;%
+  mutate(experience=parse_number(overall_years_of_professional_experience))</code></pre>
+<pre><code>## # A tibble: 44 x 19
+##    timestamp  how_old_are_you industry job_title additional_conte~ annual_salary
+##    &lt;chr&gt;      &lt;chr&gt;           &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;                     &lt;dbl&gt;
+##  1 4/27/2021~ 25-34           Computi~ Customer~ &lt;NA&gt;                     110000
+##  2 4/27/2021~ 25-34           Computi~ Cloud En~ &lt;NA&gt;                     110000
+##  3 4/27/2021~ 35-44           Computi~ Software~ &lt;NA&gt;                     145000
+##  4 4/27/2021~ 45-54           Computi~ Business~ IT - system requ~        210000
+##  5 4/27/2021~ 45-54           Computi~ Solution~ &lt;NA&gt;                     145000
+##  6 4/27/2021~ 35-44           Computi~ software~ &lt;NA&gt;                     120000
+##  7 4/27/2021~ 45-54           Computi~ Business~ IT based and wor~        110000
+##  8 4/27/2021~ 45-54           Computi~ Senior D~ &lt;NA&gt;                     197000
+##  9 4/27/2021~ 25-34           Computi~ Customer~ &lt;NA&gt;                     135000
+## 10 4/27/2021~ 35-44           Computi~ Software~ &lt;NA&gt;                     137000
+## # ... with 34 more rows, and 13 more variables: other_monetary_comp &lt;dbl&gt;,
+## #   currency &lt;chr&gt;, currency_other &lt;chr&gt;, additional_context_on_income &lt;chr&gt;,
+## #   country &lt;chr&gt;, state &lt;chr&gt;, city &lt;chr&gt;,
+## #   overall_years_of_professional_experience &lt;chr&gt;,
+## #   years_of_experience_in_field &lt;chr&gt;,
+## #   highest_level_of_education_completed &lt;chr&gt;, gender &lt;chr&gt;, race &lt;chr&gt;,
+## #   experience &lt;dbl&gt;</code></pre>
 </div>
 </div>
 
